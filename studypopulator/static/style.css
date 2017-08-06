@@ -1,0 +1,23 @@
+body            { font-family: sans-serif; background: #eee; }
+h1, h2       	{ color: #0c1b33; }
+h1, h2, h3      { font-family: 'Georgia', serif; margin: 0; }
+h1              { border-bottom: 2px solid #eee; }
+h2              { font-size: 1.2em; }
+h3				{ font-size: 0.6em; color: grey }
+
+.accepted {
+	color: green;
+}
+
+.not_accepted {
+	color: red;
+}
+
+.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+}

@@ -1,0 +1,11 @@
+{{> header }}
+<h2>Add new Participant</h2>
+<form action = "/insert_participant" method = "POST">
+	<p>Participant Name <br><input type="text" name="name"></p>
+	<p>Participant Age <br><input type="number" min="1" max="115" name="age"></p>
+	<p>Does participant have siblings? <br><input type="radio" name="HasSiblings"> Yes <input type="radio" name="HasSiblings" checked> No</p>
+	<p>Known Environmental exposures <br><textarea type="text" name="EnvironmentalExposure" rows="4" cols="35"></textarea></p>
+	<p>Known genetic mutations <br><textarea type="text" name="GeneticMutation" rows="4" cols="35"></textarea></p>
+	<p><input type="submit" value="submit"></p>
+</form>	
+{{> footer }}

@@ -1,0 +1,9 @@
+{{> header }}
+<h2>Full Participant List</h2>
+<ul>
+{{# participants }}
+	<li><a class="{{reviewStatus}}" href="/display/{{id}}">{{name}}, {{age}} years old</a></li>
+{{/ participants }}
+</ul>
+<a href="/new_participant" class="button">Add New Participant</a>
+{{> footer }}

@@ -1,0 +1,20 @@
+{{> header }}
+{{# participant }}
+	<form action="/update_review_status" method="POST">
+		<h2 class="{{reviewStatus}}">{{name}}</h2>
+		Age: {{age}}<br>
+		Has Siblings: {{hasSibling}}<br>
+		Environmental Exposure:<br>
+		<textarea rows="4" cols="35" readonly> {{environmentalExposure}} </textarea><br>
+		Genetic Mutation:<br>
+		<textarea rows="4" cols="35" readonly>{{geneticMutation}}</textarea><br>
+		Review Status: <select name="ReviewStatus" onchange="this.form.submit()" id="ReviewStatus">
+			{{# statuses }}
+				<option value="{{value}}" {{selected}}>{{text}}</option>
+			{{/ statuses }}
+		<input type="hidden" name="id" value="{{id}}">			
+	</form>
+{{/ participant }}
+<a href="/new_participant" class="button">Add New Participant</a>
+<a href="/display_all" class="button">Full Participant List</a>
+{{> footer }}

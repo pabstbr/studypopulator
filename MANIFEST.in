@@ -1,0 +1,3 @@
+graft studypopulator/templates
+graft studypopulator/static
+include studypopulator/schema.sql
