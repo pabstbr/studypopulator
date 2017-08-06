@@ -25,18 +25,29 @@ def close_connection(exception):
         db.close()
 
 def init_db():
+    """Creates the database from the schema file"""
     db = get_db()
     with app.open_resource('schema.sql', mode='r') as f:
         db.cursor().executescript(f.read())
     db.commit()
 
 def dict_factory(cursor, row):
+    """Factory to translate sqlite query results into dicts for mustache"""
     d = {}
     for idx, col in enumerate(cursor.description):
         d[col[0]] = row[idx]
     return d
 
 def insert_participant(participant_name, participant_age, participant_siblings, participant_environment, participant_genetic):
+    """Adds a new participant to the database
+
+    Keyword Arguments:
+    participant_name -- name of the new participant
+    participant_age -- age of the new participant
+    participant_siblings -- whether the new participant has siblings
+    participant_environment -- Environment exposure notes of the new participant
+    participant_genetic -- Known genetic mutations of the new participant
+    """
     db = get_db()
 
     db.cursor().execute('''
@@ -47,6 +58,12 @@ def insert_participant(participant_name, participant_age, participant_siblings, 
     db.commit()
 
 def update_review_status(participant_review_status, participant_id):
+    """Set a participant's review status
+
+    Keyword Arguments:
+    participant_review_status -- Description of the participant's new review status
+    participant_id -- database table id for the participant
+    """
     db = get_db()
 
     db.cursor().execute('''
@@ -60,12 +77,17 @@ def update_review_status(participant_review_status, participant_id):
     db.commit()
 
 def get_participants(participant_id=None):
+    """Return a list of participants, or a single participant if their ID is specified
+
+    Keyword Arguments:
+    participant_id -- database table id for the participant (default None)
+    """
     db = get_db()
     cursor = db.cursor()
     if participant_id is None:
         cursor.execute('''
             SELECT
-                *
+                id, name, age, reviewStatus
             FROM 
                 participant
             ORDER BY
@@ -82,6 +104,3 @@ def get_participants(participant_id=None):
                 id = ?
             ''', (participant_id))
         return cursor.fetchone()
-
-def tester():
-    print('test test')
